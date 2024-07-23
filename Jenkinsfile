@@ -38,4 +38,14 @@ pipeline {
                     docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
                         docker.image(DOCKER_IMAGE).push()
                     }
-               
+                }
+            }
+        }
+    }
+
+    post {
+        failure {
+            echo "Tests failed"
+        }
+    }
+}
