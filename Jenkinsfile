@@ -2,14 +2,14 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_CREDENTIALS_ID = 'dockerhub-credentials-id' // Укажите ID ваших Docker Hub credentials
-        DOCKER_IMAGE = "yourdockerhubusername/nodejs-app" // Укажите ваш Docker Hub username и имя образа
+        DOCKER_CREDENTIALS_ID = 'dockerhub-credentials-id'
+        DOCKER_IMAGE = "destroyyer/web-sql" 
     }
 
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/yourusername/nodejs-app.git' // Укажите ваш репозиторий
+                git 'https://github.com/DeStroyyer/web-sql.git'
             }
         }
 
