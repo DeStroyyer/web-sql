@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/DeStroyyer/web-sql.git'
+                git branch: 'main', url: 'https://github.com/DeStroyyer/web-sql.git'
             }
         }
 
@@ -25,9 +25,9 @@ pipeline {
             steps {
                 script {
                     sh "echo 'run some tests'"
-                    }
                 }
             }
+        }
 
         stage('Push to Docker Hub') {
             when {
@@ -38,14 +38,4 @@ pipeline {
                     docker.withRegistry('https://index.docker.io/v1/', DOCKER_CREDENTIALS_ID) {
                         docker.image(DOCKER_IMAGE).push()
                     }
-                }
-            }
-        }
-    }
-
-    post {
-        failure {
-            echo "Tests failed"
-        }
-    }
-}
+               
