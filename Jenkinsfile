@@ -28,7 +28,6 @@ pipeline {
                     }
                 }
             }
-        }
 
         stage('Push to Docker Hub') {
             when {
