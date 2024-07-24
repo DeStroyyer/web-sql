@@ -29,7 +29,7 @@ stages {
       }
   
 }
-    stage('Push to Docker Hub'){
+    stage('Push to Docker Hub') {
       when {
         expression {currenntBuild.currentResult == 'SUCCESS'}
       }
