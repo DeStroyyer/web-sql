@@ -23,7 +23,9 @@ stages {
 }
     stage('Run tests'){
       steps {
+          script {
         sh "echo 'run some tests'"
+          }
       }
   
 }
