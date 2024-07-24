@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-    DOCKER_CREDENTIALS_ID = 'docker-credentials-id'
+    DOCKER_CREDENTIALS_ID = 'dockerhub-credentials-id'
     DOCKER_IMAGE = "destroyyer/web-sql"
   }
 
