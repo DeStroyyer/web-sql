@@ -41,7 +41,7 @@ stages {
     }
 }
     post {
-      failer {
+      failure {
         echo "Build or test failed"
     }
   }
