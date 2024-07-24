@@ -31,7 +31,7 @@ stages {
 }
     stage('Push to Docker Hub') {
       when {
-        expression {currenntBuild.currentResult == 'SUCCESS'}
+        expression {currentBuild.currentResult == 'SUCCESS'}
       }
       steps {
         script {
