@@ -1,4 +1,4 @@
-name: first workflow
+name: ${{github.actor}} first workflow
 
 on: [push]
 
