@@ -10,7 +10,7 @@ jobs:
       - name: Listig content before checkout
         run: |
           pwd
-          ls
+          ls -la
 
       - name: Checkout code
         uses: actions/checkout@v4
@@ -18,4 +18,4 @@ jobs:
       - name: Listening content after checkout
         run: |
           pwd
-          ls
+          ls -la
