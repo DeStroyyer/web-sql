@@ -1,0 +1,11 @@
+name: first workflow
+
+on: [pudh]
+
+jobs:
+  first_job:
+    runs-on: ubuntu:latest
+      - name: Listig content before checkout
+        run: |
+          pwd
+          ls
