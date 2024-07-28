@@ -1,4 +1,5 @@
-name: ${{ github.actor }} first workflow
+name: First workflow
+run-name: ${{ github.actor }} first workflow
 
 on: [push]
 
