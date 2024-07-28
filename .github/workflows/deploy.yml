@@ -23,7 +23,7 @@ jobs:
           echo "Finished at $(date)"
 
   linux-job:
-    needs: macos-job
+    needs: windows-job
     runs-on: ubuntu-latest
     steps:
       - name: running in ubuntu
