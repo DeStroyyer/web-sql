@@ -4,7 +4,7 @@ run-name: Matrix example
 on:
     push:
         branches:
-            -main
+            - main
 
 jobs:
     build-and-test:
