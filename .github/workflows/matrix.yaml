@@ -12,15 +12,15 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest, macos-latest]
-                python-versions: ['3.9', '3.10', '3.11']
+                versions: ['3.9', '3.10', '3.11']
 
         steps:
         - uses: actions/checkout@v4   
 
-        - name: Setup Python ${{ matrix.python-versions }}
+        - name: Setup Python ${{ matrix.versions }}
           uses: actions/setup-python@v4
           with:
-            python-versions: ${{ matrix.python-versions }}
+            versions: ${{ matrix.versions }}
 
         - name: Install dependencies
           run: |
