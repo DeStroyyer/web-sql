@@ -9,7 +9,7 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - name: Run build
-              run: echwrtwrtwtwro "Build app"
+              run: echo "Build app"
 
 
     test:
@@ -19,4 +19,18 @@ jobs:
             - uses: actions/checkout@v4
             - name: Run some tests
               run: echo "Run some tests"
+
+    windows-job:
+        runs-on: windows-latest
+        steps:
+            - name: using powershell
+              shell: pwsh
+              run: echo "Using powershell"
+
+    macos-job:
+        runs-on: macos-latest
+        steps:
+            - name: using bash
+              shell: bash
+              run: echo "Using bash"
 
