@@ -1,4 +1,5 @@
-name: CI
+name: New workflow 
+run-name: New workflow
 
 on: [push]
 
@@ -7,8 +8,14 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
-            - name: Run one-line script
-              run: echo "Hello, world!"
-            - name: Print secret
-              run: echo ${{ secrets.TEST }}
-              
+            - name: Run build
+              run: echo "Build app"
+
+
+    test:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Run some tests
+              run: echo "Run some tests"
+
