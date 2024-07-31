@@ -48,6 +48,10 @@ jobs:
       with:
         name: build-artifacts
         path: ./build
+    - name: List build directory
+      run: |
+        echo "Listing contents of the build directory:"
+        ls -al ./build
     - name: Deploy to production
       run: echo "Deploying to production..."
 
