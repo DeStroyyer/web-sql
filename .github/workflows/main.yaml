@@ -9,7 +9,7 @@ jobs:
         steps:
             - uses: actions/checkout@v4
             - name: Run build
-              run: echo "Build app"
+              run: echwrtwrtwtwro "Build app"
 
 
     test:
