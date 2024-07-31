@@ -9,3 +9,6 @@ jobs:
             - uses: actions/checkout@v4
             - name: Run one-line script
               run: echo "Hello, world!"
+            - uses: your-username/hello-world-action@v1
+              with:
+                  who-to-greet: 'Mona the Octocat'
