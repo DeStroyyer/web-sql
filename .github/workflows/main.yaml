@@ -9,3 +9,6 @@ jobs:
             - uses: actions/checkout@v4
             - name: Run one-line script
               run: echo "Hello, world!"
+            - name: Print secret
+              run: echo ${{ secrets.TEST }}
+              
