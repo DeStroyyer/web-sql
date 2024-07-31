@@ -1,4 +1,4 @@
-name: CI
+name: Python Docker CI
 
 on:
   push:
@@ -9,24 +9,38 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        node-version: [14.x, 16.x, 18.x]
+        os: [ubuntu-latest, macos-latest]
+        python-version: ['3.8', '3.9', '3.10']
+      fail-fast: false
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
       with:
-        node-version: ${{ matrix.node-version }}
+        python-version: ${{ matrix.python-version }}
 
-    - run: npm ci
-    - run: npm test
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Run tests
+      run: |
+        python -m pytest tests/
+
+    - name: Build Docker image
+      run: |
+        docker build -t my-python-app:${{ matrix.python-version }} .
+
+    - name: Run Docker container and test
+      run: |
+        docker run my-python-app:${{ matrix.python-version }} python -m pytest tests/
 
     env:
       CI: true
-
