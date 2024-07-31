@@ -1,53 +1,32 @@
-name: Parallel and Sequential Jobs
+name: CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [14.x, 16.x, 18.x]
+
     steps:
-    - uses: actions/checkout@v4
-    - name: Build project
-      run: |
-        echo "Building the project..."
-        mkdir -p build
-        echo "Build output" > build/output.txt
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v4
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
       with:
-        name: build-artifacts
-        path: ./build
+        node-version: ${{ matrix.node-version }}
 
-  unit_tests:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-    - uses: actions/checkout@v4
-    - name: Run unit tests
-      run: echo "Running unit tests..."
+    - run: npm ci
+    - run: npm test
 
-  integration_tests:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-    - uses: actions/checkout@v4
-    - name: Run integration tests
-      run: echo "Running integration tests..."
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: [unit_tests, integration_tests]
-    steps:
-    - uses: actions/checkout@v4
-    - name: Download build artifacts
-      uses: actions/download-artifact@v4
-      with:
-        name: build-artifacts
-        path: ./build
-    - name: List build directory
-      run: |
-        echo "Listing contents of the build directory:"
-        ls -al ./build
-    - name: Deploy to production
-      run: echo "Deploying to production..."
+    env:
+      CI: true
 
